@@ -8,7 +8,7 @@ const routes     = require('./routes');
 
 const app        = express();
 
-app.use(logger('combined'));
+app.use(logger('tiny'));
 app.use(cors());
 app.use(bodyParser.json());
 
