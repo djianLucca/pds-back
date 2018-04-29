@@ -35,7 +35,20 @@ exports.getById = (id) => {
 }
 
 exports.getByUserId = (id) => {
-    return model.pcts.findOne({where: {userId: id}});
+    return model.pcts.findOne({
+        include: [{
+            attributes: [
+                "id",
+                "email",
+                "personId"
+            ],
+            model: model.users,
+            include: [{
+                model: model.people
+            }]
+        }],
+        where: {userId: id}
+    });
 }
 
 exports.create = (data) => {
