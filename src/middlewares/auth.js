@@ -9,13 +9,13 @@ exports.generateToken = async (data) => {
 
 exports.auth = (req, res, next) => {
     const token = req.headers['x-access-token'];
-    
+
     const errorUnauthorized = new Error();
     errorUnauthorized.message = 'Unauthorized request.';
     errorUnauthorized.status = 401;
-    
+
     if (!token) {
-      next(errorUnauthorized);
+        next(errorUnauthorized);
     } else {
         jwt.verify(token, SECRET_WORD, (error, decoded) => {
             if (error) {
@@ -25,11 +25,10 @@ exports.auth = (req, res, next) => {
                 next();
             }
         });
-    }   
+    }
 }
 
 exports.decodeToken = async (token) => {
-    const data = await jwt.verify(token, global.SALT_KEY);
+    const data = await jwt.verify(token, SECRET_WORD);
     return data;
 }
-  

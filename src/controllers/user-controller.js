@@ -90,7 +90,7 @@ exports.auth = async (req, res, next) => {
         const token = await auth.generateToken(pctPlain);
 
         res.json({
-            token: token,
+            token,
             data: pctPlain
         });
     }catch(error){
