@@ -26,6 +26,7 @@ exports.getById = async (req, res, next) => {
 exports.create = async (req, res, next) => {
     try{
         const dataToCreate = req.body;
+        dataToCreate.pctId = req.decoded.id;
         const data = await repository.create(dataToCreate);
 
         if(!data)throw new Error("Wasn't possible to create this startup.");
