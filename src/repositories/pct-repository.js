@@ -40,7 +40,8 @@ exports.getByUserId = (id) => {
             attributes: [
                 "id",
                 "email",
-                "personId"
+                "personId",
+                "is_admin"
             ],
             model: model.users,
             include: [{

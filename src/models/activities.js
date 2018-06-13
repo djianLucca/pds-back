@@ -5,13 +5,13 @@ module.exports = (sequelize, DataTypes) => {
   var activities = sequelize.define('activities', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    // description: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false
-    // }
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     name: { singular: 'activity', plural: 'activities' }
   });

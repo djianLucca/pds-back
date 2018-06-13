@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   var users = sequelize.define('users', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
     email: {
@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     salt: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    is_admin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {});
 

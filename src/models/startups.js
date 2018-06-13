@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   var startups = sequelize.define('startups', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
     name: {
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     startups.belongsTo(models.pcts); 
     startups.belongsTo(models.people); 
     startups.belongsTo(models.areas); 
-    startups.hasOne(models.action_plans); 
+    startups.hasOne(models.startup_models); 
   };
 
   return startups;

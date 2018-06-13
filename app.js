@@ -3,7 +3,7 @@ const db   = require('./src/models');
 
 const port = process.env.PORT || 3000;
 
-db.sequelize.sync()
+db.sequelize.sync({force:true})
         .then(() => {
             app.listen(port, () => {
                 console.log();
