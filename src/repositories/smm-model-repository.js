@@ -3,21 +3,38 @@
 const model = require('../models');
 
 exports.get = () => {
-    return model.activities_types.findAll();
+    return model.smm_models.findAll({
+        include: [{
+            model: model.pcts
+        }]
+    });
+}
+
+exports.getByPct = (pctId) => {
+    return model.smm_models.findAll({
+        where: { pctId },
+        include: [{
+            model: model.pcts
+        }]
+    });
 }
 
 exports.getById = (id) => {
-    return model.activities_types.findById(id);
+    return model.smm_models.findById(id, {
+        include: [{
+            model: model.pcts
+        }]
+    });
 }
 
 exports.create = (data) => {
-    return model.activities_types.create(data);
+    return model.smm_models.create(data);
 }
 
 exports.update = (id, data) => {
-    return model.activities_types.update(data, { where: { id: id }})
+    return model.smm_models.update(data, { where: { id: id }})
 }
 
 exports.delete = (id) => {
-    return model.activities_types.destroy({ where: { id: id }})
+    return model.smm_models.destroy({ where: { id: id }})
 }

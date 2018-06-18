@@ -23,6 +23,21 @@ exports.getByStartup = async (req, res, next) => {
     }
 }
 
+exports.getBySmmModelId = async (req, res, next) => {
+    try{
+        const smmModelId = req.params._smmModelId;
+        const dataFromDb = await repository.getBySmmModelId(smmModelId);
+
+        if(!dataFromDb)throw new Error("Wasn't possible to find this action plan.");
+
+        const activities = dataFromDb.map(actionPlan => actionPlan.activity);
+        
+        res.json(activities);
+    }catch(error){
+        next(error);
+    }
+}
+
 exports.create = async (req, res, next) => {
     try{
         const dataToCreate = req.body;

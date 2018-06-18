@@ -26,6 +26,20 @@ exports.getById = (id) => {
     });
 }
 
+exports.getByPhase = (phaseId) => {
+    return model.activities.findAll({
+        where: { phaseId },
+        order: [['createdAt', 'ASC']],
+        include: [{
+            model: model.phases
+        },{
+            model: model.dimensions
+        },{
+            model: model.activities_types
+        }]
+    });
+}
+
 exports.create = (data) => {
     return model.sequelize.transaction((t) => {
         return model.activities.create(data, { transaction: t });

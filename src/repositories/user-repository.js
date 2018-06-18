@@ -11,7 +11,6 @@ exports.getById = (id) => {
 }
 
 exports.getByEmail = (email) => {
-    console.log(email);
     return model.users.findOne({where: {email: email}});
 }
 

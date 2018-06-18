@@ -23,12 +23,27 @@ exports.getById = async (req, res, next) => {
     }
 }
 
+exports.getByPhase = async (req, res, next) => {
+    try{
+        const phaseId = req.params._phaseId;
+        const data = await repository.getByPhase(phaseId);
+
+        if(!data)throw new Error("Wasn't possible to find this activity.");
+        
+        res.json(data);
+    }catch(error){
+        next(error);
+    }
+}
+
 exports.create = async (req, res, next) => {
     try{
         const dataToCreate = req.body;
-        const data = await repository.create(dataToCreate);
+        const dataCreated = await repository.create(dataToCreate);
 
-        if(!data)throw new Error("Wasn't possible to create this activity.");
+        if(!dataCreated)throw new Error("Wasn't possible to create this activity.");
+
+        const data = await repository.getById(dataCreated.id);
         
         res.json(data);
     }catch(error){

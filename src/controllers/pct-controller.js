@@ -55,9 +55,28 @@ exports.create = async (req, res, next) => {
 
 exports.update = async (req, res, next) => {
     try{
-        const dataToUpdate = req.body;
+        const body = req.body;
         const id = req.params._id;
 
+        const dataToUpdate = {};
+
+        if(body.name){
+            dataToUpdate.name = body.name;
+        }
+
+        if(body.user){
+            if(body.user.email){
+                dataToUpdate.user.email = body.user.email;
+            }
+            if(body.user.password){
+                dataToUpdate.user.salt = await bcrypt.genSalt(10);
+                dataToUpdate.user.password = await bcrypt.hash(body.user.password, salt);
+            }
+            if(body.user.person && body.user.person.name){
+                dataToUpdate.user.person.name = body.user.person.name;
+            }
+        }
+        
         const data = await repository.update(id, dataToUpdate);
 
         if(!data)throw new Error("Wasn't possible to update this pct.");

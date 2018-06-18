@@ -17,30 +17,35 @@ module.exports = {
     {
       id: uuidv4(),
       name: 'Skate',
+      order: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       id: uuidv4(),
       name: 'Bicicleta',
+      order: 2,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       id: uuidv4(),
       name: 'Carro',
+      order: 3,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       id: uuidv4(),
       name: 'Avião',
+      order: 4,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       id: uuidv4(),
       name: 'Foguete',
+      order: 5,
       createdAt: new Date(),
       updatedAt: new Date()
     }

@@ -5,7 +5,7 @@ const model = require('../models');
 exports.get = () => {
     return model.action_plans.findAll({
         include: [{
-            model: model.startups
+            model: model.smm_models
         },{
             model: model.activities
         },{
@@ -14,14 +14,20 @@ exports.get = () => {
     });
 }
 
-exports.getByPctId = (pctId) => {
+exports.getBySmmModelId = (smmModelId) => {
     return model.action_plans.findAll({
+        where: { smmModelId },
+        order: [[model.activities, 'createdAt', 'ASC']],
         include: [{
-            model: model.startups
-        },{
-            model: model.activities
-        }],
-        where: {pctId : id}
+            model: model.activities,
+            include: [{
+                model: model.phases
+            },{
+                model: model.dimensions
+            },{
+                model: model.activities_types
+            }]
+        }]
     });
 }
 
@@ -52,14 +58,21 @@ exports.createBulk = (data) => {
     });
 }
 
-exports.delete = (pctId,startupId) => {
+exports.delete = ( id ) => {
     return model.sequelize.transaction((t) => {
         return model.action_plans.destroy({ 
             transaction: t,
-            where: {
-                pctId: pctId,
-                startupId: startupId
-                }
+            where: { id }
         });
     });
 }
+
+exports.deleteBySmmModel = (smmModelId) => {
+    return model.sequelize.transaction((t) => {
+        return model.action_plans.destroy({ 
+            transaction: t,
+            where: { smmModelId }
+        });
+    });
+}
+

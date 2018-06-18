@@ -3,7 +3,7 @@
 const model = require('../models');
 
 exports.get = () => {
-    return model.action_plans.findAll({
+    return model.startup_models.findAll({
         include: [{
             model: model.startups
         },{
@@ -15,7 +15,7 @@ exports.get = () => {
 }
 
 exports.getByPctId = (pctId) => {
-    return model.action_plans.findAll({
+    return model.startup_models.findAll({
         include: [{
             model: model.startups
         },{
@@ -26,7 +26,7 @@ exports.getByPctId = (pctId) => {
 }
 
 exports.getById = (id) => {
-    return model.action_plans.findById(id, {
+    return model.startup_models.findById(id, {
         include: [{
             model: model.startups
         },{
@@ -39,13 +39,13 @@ exports.getById = (id) => {
 
 exports.create = (data) => {
     return model.sequelize.transaction((t) => {
-        return model.action_plans.create(data, { transaction: t });
+        return model.startup_models.create(data, { transaction: t });
     });
 }
 
 exports.createBulk = (data) => {
     return model.sequelize.transaction((t) => {
-        return model.action_plans.bulkCreate(data, {
+        return model.startup_models.bulkCreate(data, {
             transaction: t,
             updateOnDuplicate: true
         });
@@ -54,7 +54,7 @@ exports.createBulk = (data) => {
 
 exports.delete = (pctId,startupId) => {
     return model.sequelize.transaction((t) => {
-        return model.action_plans.destroy({ 
+        return model.startup_models.destroy({ 
             transaction: t,
             where: {
                 pctId: pctId,

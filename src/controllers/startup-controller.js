@@ -10,6 +10,16 @@ exports.get = async (req, res, next) => {
     }
 }   
 
+exports.getByPct = async (req, res, next) => {
+    try{
+        const pctId = req.decoded.id;
+        const data = await repository.getByPct(pctId)
+        res.json(data);
+    }catch(error){
+        next(error);
+    }
+}   
+
 exports.getById = async (req, res, next) => {
     try{
         const id = req.params._id;

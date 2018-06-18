@@ -3,7 +3,7 @@
 const model = require('../models');
 
 exports.get = () => {
-    return model.phases.findAll();
+    return model.phases.findAll({order: [['order', 'ASC']]});
 }
 
 exports.getById = (id) => {

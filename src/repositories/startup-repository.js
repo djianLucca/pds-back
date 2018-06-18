@@ -26,6 +26,19 @@ exports.getById = (id) => {
     });
 }
 
+exports.getByPct = (pctId) => {
+    return model.startups.findAll({
+        where: { pctId },
+        include: [{
+            model: model.people
+        },{
+            model: model.areas
+        },{
+            model: model.pcts
+        }]
+    });
+}
+
 exports.create = (data) => {
     return model.sequelize.transaction((t) => {
         return model.startups.create(data, {
