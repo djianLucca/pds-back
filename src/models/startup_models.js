@@ -45,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
   startup_models.associate = function(models) {
     startup_models.belongsTo(models.startup_models);
     startup_models.belongsTo(models.startups);
+    startup_models.belongsTo(models.action_plans);
   };
 
   return startup_models;

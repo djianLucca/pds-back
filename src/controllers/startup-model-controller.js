@@ -1,5 +1,6 @@
 'use strict';
 const repository = require('../repositories/startup-model-repository');
+const repositoryStartup = require('../repositories/startup-repository');
 
 // exports.get = async (req, res, next) => {
 //     try{
@@ -26,9 +27,12 @@ exports.getByStartup = async (req, res, next) => {
 exports.create = async (req, res, next) => {
     try{
         const dataToCreate = req.body;
+        const id = req.params._startupId;
         const data = await repository.createBulk(dataToCreate);
 
         if(!data)throw new Error("Wasn't possible to create this startup model.");
+
+        const startupUpdated = await repositoryStartup.update(id, {hasModel: 1})
         
         res.json(data);
     }catch(error){

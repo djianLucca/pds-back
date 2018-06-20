@@ -55,10 +55,14 @@ exports.update = (id, data) => {
         return this.getById(id)
         .then(startup => {
             if (!startup) return startup;
-
-            return startup.person
-                .updateAttributes(data.person, { transaction: t })
-                .then(person => startup.update(data, { transaction: t }));
+            
+            if(data.person){
+                return startup.person
+                    .updateAttributes(data.person, { transaction: t })
+                    .then(person => startup.update(data, { transaction: t }));
+            }else{
+                return startup.update(data, { transaction: t })
+            }
         });
 
     });

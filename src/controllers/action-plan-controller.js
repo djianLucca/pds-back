@@ -38,6 +38,18 @@ exports.getBySmmModelId = async (req, res, next) => {
     }
 }
 
+exports.getActionPlansBySmmModelId = async (req, res, next) => {
+    try{
+        const smmModelId = req.params._smmModelId;
+        const data = await repository.getBySmmModelId(smmModelId);
+
+        if(!data)throw new Error("Wasn't possible to find this action plan.");
+        res.json(data);
+    }catch(error){
+        next(error);
+    }
+}
+
 exports.create = async (req, res, next) => {
     try{
         const dataToCreate = req.body;
