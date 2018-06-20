@@ -13,5 +13,6 @@ router.use('/dimension',        require('./dimension-route'));
 router.use('/phase',            require('./phase-route'));
 router.use('/smm-model',        require('./smm-model-route'));
 router.use('/startup-model',    require('./startup-model-route'));
+router.use('/chart',            require('./chart-route'));
 
 module.exports = router;
