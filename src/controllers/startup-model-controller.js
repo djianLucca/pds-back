@@ -13,7 +13,7 @@ const repository = require('../repositories/startup-model-repository');
 exports.getByStartup = async (req, res, next) => {
     try{
         const startupId = req.params._startupId;
-        const data = await repository.getById(startupId);
+        const data = await repository.getByStartup(startupId);
 
         if(!data)throw new Error("Wasn't possible to find this startup model.");
         

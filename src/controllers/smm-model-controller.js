@@ -1,4 +1,4 @@
-'use _idict';
+'use strict';
 const repository = require('../repositories/smm-model-repository');
 const actionPlanRepository = require('../repositories/action-plan-repository');
 
@@ -51,9 +51,9 @@ exports.create = async (req, res, next) => {
 
         if(!createdSmmModel)throw new Error("Wasn't possible to create this model.");
 
-        const actionPlans = activities.map(activity => {
+        const actionPlans = activities.map(activityId => {
             return {
-                activityId: activity,
+                activityId,
                 smmModelId: createdSmmModel.id
             }
         });

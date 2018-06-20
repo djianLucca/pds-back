@@ -14,14 +14,12 @@ exports.get = () => {
     });
 }
 
-exports.getByPctId = (pctId) => {
+exports.getByStartup = (startupId) => {
     return model.startup_models.findAll({
         include: [{
-            model: model.startups
-        },{
             model: model.activities
         }],
-        where: {pctId : id}
+        where: { startupId }
     });
 }
 

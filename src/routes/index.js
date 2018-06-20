@@ -11,6 +11,7 @@ router.use('/activity',         require('./activity-route'));
 router.use('/activity-type',    require('./activity-type-route'));
 router.use('/dimension',        require('./dimension-route'));
 router.use('/phase',            require('./phase-route'));
-router.use('/smm-model',            require('./smm-model-route'));
+router.use('/smm-model',        require('./smm-model-route'));
+router.use('/startup-model',    require('./startup-model-route'));
 
 module.exports = router;
