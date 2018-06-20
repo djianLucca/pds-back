@@ -22,7 +22,14 @@ exports.getByStartup = (startupId) => {
         include: [{
             model: model.action_plans,
             include: [{
-                model: model.activities
+                model: model.activities,
+                include: [{
+                    model: model.phases
+                },{
+                    model: model.dimensions
+                },{
+                    model: model.activities_types
+                }]
             }]
         }],
         where: { startupId }

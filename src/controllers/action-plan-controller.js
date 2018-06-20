@@ -30,7 +30,7 @@ exports.getBySmmModelId = async (req, res, next) => {
 
         if(!dataFromDb)throw new Error("Wasn't possible to find this action plan.");
 
-        const activities = dataFromDb.map(actionPlan => actionPlan.activity);
+        const activities = dataFromDb.map(action_plan => action_plan.activity);
         
         res.json(activities);
     }catch(error){
