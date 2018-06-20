@@ -26,7 +26,7 @@ exports.getByStartup = async (req, res, next) => {
 exports.create = async (req, res, next) => {
     try{
         const dataToCreate = req.body;
-        const data = await repository.create(dataToCreate);
+        const data = await repository.createBulk(dataToCreate);
 
         if(!data)throw new Error("Wasn't possible to create this startup model.");
         

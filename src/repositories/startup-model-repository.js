@@ -7,7 +7,10 @@ exports.get = () => {
         include: [{
             model: model.startups
         },{
-            model: model.activities
+            model: model.action_plans,
+            include: [{
+                model: model.activities
+            }]
         },{
             model: model.pcts
         }]
@@ -17,7 +20,10 @@ exports.get = () => {
 exports.getByStartup = (startupId) => {
     return model.startup_models.findAll({
         include: [{
-            model: model.activities
+            model: model.action_plans,
+            include: [{
+                model: model.activities
+            }]
         }],
         where: { startupId }
     });
@@ -28,7 +34,10 @@ exports.getById = (id) => {
         include: [{
             model: model.startups
         },{
-            model: model.activities
+            model: model.action_plans,
+            include: [{
+                model: model.activities
+            }]
         },{
             model: model.pcts
         }]
