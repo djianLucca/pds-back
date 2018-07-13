@@ -58,7 +58,7 @@ exports.update = async (req, res, next) => {
         const body = req.body;
         const id = req.params._id;
 
-        const dataToUpdate = {};
+        const dataToUpdate = await repository.getById(id).get({ plain: true});
 
         if(body.name){
             dataToUpdate.name = body.name;
